@@ -3,6 +3,8 @@ var oReq = new XMLHttpRequest();
 // Variables to store comic numbers to keep track of which is displayed.
 var displayedComic = null;
 var latestComic = null;
+var currentUrl = "http://xkcd.com/";
+
 
 // Eventlisteners for buttons
 var first = document.getElementById("first");
@@ -10,11 +12,13 @@ var prev = document.getElementById("prev");
 var rand = document.getElementById("random");
 var next = document.getElementById("next");
 var last = document.getElementById("last");
+var image = document.getElementById("comic");
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
 rand.onload = rand.addEventListener("click", getRandom, false);
 next.onload = next.addEventListener("click", getNext, false);
 last.onload = last.addEventListener("click", getLast, false);
+image.onload = image.addEventListener("click", openComic, false);
 
 // Initialize to most recent comic
 // Specify json response type since xkcd stores comic info in json
@@ -25,13 +29,14 @@ oReq.send();
 
 // Populates title and image, sets the current comic from the json response
 function reqListener() {
+  displayedComic = this.response.num;
+  currentUrl = "http://xkcd.com/" + displayedComic;
+
   document.getElementById("comicTitle").innerHTML = this.response.title;
-  document.getElementById("comicNumber").innerHTML = "#"+this.response.num;
+  document.getElementById("comicNumber").innerHTML = "#"+displayedComic;
   document.getElementById("comic").src = this.response.img;
   document.getElementById("comic").alt = this.response.title;
   document.getElementById("comic").title = this.response.alt;
-
-  displayedComic = this.response.num;
 }
 
 //Set most recent comic and run reqListener()
@@ -77,4 +82,9 @@ function getNext() {
 // Get most recent comic
 function getLast() {
   setComic("http://xkcd.com/info.0.json");
+}
+
+// Opens a new tab to the page the comic is located at
+function openComic() {
+  chrome.tabs.create({ url: currentUrl });
 }
