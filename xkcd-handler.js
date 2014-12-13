@@ -5,7 +5,6 @@ var displayedComic = null;
 var latestComic = null;
 var currentUrl = "http://xkcd.com/";
 
-
 // Eventlisteners for buttons
 var first = document.getElementById("first");
 var prev = document.getElementById("prev");
@@ -86,5 +85,5 @@ function getLast() {
 
 // Opens a new tab to the page the comic is located at
 function openComic() {
-  chrome.tabs.create({ url: currentUrl });
+  chrome.tabs.create({ url: currentUrl, active: false });
 }
