@@ -2,12 +2,18 @@
   "manifest_version": 2,
   "author": "Andy Tu",
   "name": "xkcd - comics viewer",
-  "description": "Let's you view XKCD comics from anywhere",
+  "short_name": "xkcd-view",
+  "description": "View XKCD comics from any page.",
 
-  "version": "0.0.1",
+  "version": "1.0.0",
+
+  "icons": {
+      "128": "assets/xkcd_128.png",
+      "48": "assets/xkcd_48.png"
+   },
 
   "browser_action": {
-    "default_icon": "assets/icon_128.png",
+    "default_icon": "assets/xkcd_128.png",
     "default_popup": "xkcd.html"
   },
 
