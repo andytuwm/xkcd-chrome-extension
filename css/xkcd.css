@@ -1,0 +1,154 @@
+body {
+  background-color: #83B5D1;
+  text-align: center;
+  /*font-variant: small-caps;*/
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+div {
+  font-size: 16px;
+  font-weight: 500;
+}
+#containerTable {
+  table-layout: fixed;
+  width: 100%;
+  margin: auto;
+}
+#containerTable td {
+  vertical-align: top;
+  padding: 5px;
+}
+
+
+#bookmarktd {
+  width: 50%;
+}
+#bookmarkContainer {
+  background: white;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: white;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#bookmarkContainer ul {
+  font-size: 14px;
+  margin: 1em;
+  text-align: left;
+  list-style-type: none;
+  padding-left: 0;
+}
+#bookmarkContainer ul a {
+  text-decoration: none;
+}
+#bookmarkContainer ul a:hover {
+  text-decoration: underline;
+}
+#bookmarkTitle {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+
+#comictd {
+  width: 780px;
+}
+#comicContainer {
+  background: white;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: white;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 100%;
+  margin: auto;
+}
+#comicTitle {
+  font-size: 21px;
+  font-weight: 800;
+  margin-bottom:-7px;
+}
+#comicNumber {
+  font-size: 16px;
+  font-weight: 800;
+}
+.comicNav {
+  padding: 0;
+  list-style-type: none;
+}
+.comicNav li {
+  display: inline;
+  background-color:#005994;
+  color: #FFF;
+  cursor: pointer;
+  border: 1.5px solid #333;
+  font-size: .8em;
+  font-weight: 600;
+  padding: 1.5px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 0 5px 0 gray;
+  -moz-box-shadow: 0 0 5px 0 gray;
+  -webkit-box-shadow: 0 0 5px 0 gray; 
+}
+.comicNav li:hover, .comicNav li:focus {
+  background-color: #FFF;
+  color: #6E7B91;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+#comic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#whatIftd {
+  width: 50%;
+}
+#whatIfContainer {
+  background: white;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: white;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#dynamicTitle {
+  font-size: 21px;
+  font-weight: 800;
+}
+#whatIfLink:link, :visited {
+  text-decoration: none;
+}
+#whatIfLink:hover {
+  text-decoration: underline;
+}
+#whatIfQuestion {
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 700;
+  color: #005994;
+  margin: 1em;
+}
+#whatIfQuestion a:hover {
+  font-weight: 900;
+  font-style: normal;
+}
+#attribute {
+  font-weight: 700;
+  margin-right: 1em;
+  text-align: right;
+}
