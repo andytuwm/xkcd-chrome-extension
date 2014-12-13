@@ -1,18 +1,26 @@
 body {
-  background-color: #83B5D1;
   text-align: center;
   /*font-variant: small-caps;*/
   font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+img {
+  max-height: 450px;
+  max-width: 740px;
+  height: auto;
+  width: auto;
+}
+#comic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #comicContainer {
   background: white;
-  border-style: solid;
-  border-width: 1.5px;
-  border-color: white;
-  border-radius: 12px;
-  -moz-border-radius: 12px;
-  width: 100%;
+  width: 750px;
+  height: 570px;
   margin: auto;
 }
 #comicTitle {
@@ -24,6 +32,11 @@ body {
   font-size: 16px;
   font-weight: 300;
 }
+
+#image {
+  height: 450px;
+}
+
 .comicNav {
   padding: 0;
   list-style-type: none;
@@ -52,15 +65,4 @@ body {
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
-}
-#comic {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#attribute {
-  font-weight: 700;
-  margin-right: 1em;
-  text-align: right;
 }
