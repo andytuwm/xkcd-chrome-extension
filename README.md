@@ -5,6 +5,8 @@ View xkcd comics from chrome extension button.
 
 To view the specific comic on the original site, click the image and the comic will be loaded in a background tab.
 
+Type a number and press enter to search for the comic with the specified comic number. If entry is invalid nothing happens.
+
 Installation
 ====
 1) Download the .crx extension file from the [Releases](https://github.com/andytuwm/xkcd-chrome-extension/releases) page
