@@ -38,5 +38,6 @@ img {
 }
 
 .navigation {
-  position:400px;
+  position: relative;
+  left: 53px;
 }
