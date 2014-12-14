@@ -20,7 +20,7 @@ img {
 #comicContainer {
   background: white;
   width: 750px;
-  height: 550px;
+  height: 500px;
   margin: auto;
 }
 #comicTitle {
@@ -37,32 +37,17 @@ img {
   height: 450px;
 }
 
-.comicNav {
+paper-icon-button {
+  vertical-align: middle;
+}
+
+.navigation {
   padding: 0;
   list-style-type: none;
 }
-.comicNav li {
+
+.navigation li {
   display: inline;
-  background-color:#005994;
-  color: #FFF;
-  cursor: pointer;
-  border: 1.5px solid #333;
-  font-size: .8em;
-  font-weight: 600;
-  padding: 1.5px 12px;
-  margin: 0 4px;
-  text-decoration: none;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  box-shadow: 0 0 5px 0 gray;
-  -moz-box-shadow: 0 0 5px 0 gray;
-  -webkit-box-shadow: 0 0 5px 0 gray;
-}
-.comicNav li:hover, .comicNav li:focus {
-  background-color: #FFF;
-  color: #6E7B91;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
+  margin: auto;
+  padding: 1px 10px;
 }
