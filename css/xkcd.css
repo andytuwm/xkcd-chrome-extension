@@ -6,7 +6,7 @@ body {
 }
 
 img {
-  max-height: 450px;
+  max-height: 442px;
   max-width: 740px;
   height: auto;
   width: auto;
@@ -34,7 +34,7 @@ img {
 }
 
 #image {
-  height: 450px;
+  height: 442px;
 }
 
 paper-icon-button {
