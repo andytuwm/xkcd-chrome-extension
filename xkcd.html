@@ -6,6 +6,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
     <link rel="import" href="components/paper-icon-button/paper-icon-button.html">
     <link rel="import" href="components/core-icons/notification-icons.html">
+    <link rel="import" href="components/core-icons/core-icons.html">
     <script src="xkcd-handler.js" async></script>
   </head>
 
@@ -17,23 +18,19 @@
           <div id= "image">
             <img id="comic">
           </div>
-          <ul class="navigation">
-            <li id="first">
-              <paper-icon-button src="assets/start.png" title="First"></paper-icon-button>
-            </li>
-            <li id="prev">
-              <paper-icon-button src="assets/back.png" title="Previous"></paper-icon-button>
-            </li>
-            <li id="random">
-              <paper-icon-button icon="notification:sync" title="Random"></paper-icon-button>
-            </li>
-            <li id="next">
-              <paper-icon-button src="assets/next.png" title="Next"></paper-icon-button>
-            </li>
-            <li id="last">
-              <paper-icon-button src="assets/end.png" title="Last"></paper-icon-button>
-            </li>
-          </ul>
+          <div horizontal justified layout class="navigation">
+            <div><img src="assets/xkcd_48.png"></div>
+            <div>
+              <paper-icon-button id="first" src="assets/start.png" title="First"></paper-icon-button>
+              <paper-icon-button id="prev" src="assets/back.png" title="Previous"></paper-icon-button>
+              <paper-icon-button id="random" icon="notification:sync" title="Random"></paper-icon-button>
+              <paper-icon-button id="next" src="assets/next.png" title="Next"></paper-icon-button>
+              <paper-icon-button id="last" src="assets/end.png" title="Last"></paper-icon-button>
+            </div>
+            <div>
+              <paper-icon-button id="search" icon="search" title="Last"></paper-icon-button>
+            </div>
+          </div>
       </div>
 
   </body>
