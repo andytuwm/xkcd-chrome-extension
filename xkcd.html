@@ -5,8 +5,9 @@
     <link rel="stylesheet" type="text/css" href="css/xkcd.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
     <link rel="import" href="components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="components/paper-input/paper-input-decorator.html">
     <link rel="import" href="components/core-icons/notification-icons.html">
-    <link rel="import" href="components/core-icons/core-icons.html">
+    <link rel="import" href="components/core-input/core-input.html">
     <script src="xkcd-handler.js" async></script>
   </head>
 
@@ -28,7 +29,9 @@
               <paper-icon-button id="last" src="assets/end.png" title="Last"></paper-icon-button>
             </div>
             <div>
-              <paper-icon-button id="search" icon="search" title="Last"></paper-icon-button>
+              <paper-input-decorator id="search" label="Search Comic Number">
+                <input id ="input" is="core-input">
+              </paper-input-decorator>
             </div>
           </div>
       </div>

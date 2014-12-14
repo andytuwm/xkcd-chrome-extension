@@ -3,6 +3,7 @@ var oReq = new XMLHttpRequest();
 // Variables to store comic numbers to keep track of which is displayed.
 var displayedComic = null;
 var latestComic = null;
+var comicSearch = null;
 var currentUrl = "http://xkcd.com/";
 
 // Eventlisteners for buttons
@@ -12,12 +13,14 @@ var rand = document.getElementById("random");
 var next = document.getElementById("next");
 var last = document.getElementById("last");
 var image = document.getElementById("comic");
+var search = document.getElementById("search");
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
 rand.onload = rand.addEventListener("click", getRandom, false);
 next.onload = next.addEventListener("click", getNext, false);
 last.onload = last.addEventListener("click", getLast, false);
 image.onload = image.addEventListener("click", openComic, false);
+search.onload = search.addEventListener("keyup", searchComic, false);
 
 // Initialize to most recent comic
 // Specify json response type since xkcd stores comic info in json
@@ -86,4 +89,14 @@ function getLast() {
 // Opens a new tab to the page the comic is located at
 function openComic() {
   chrome.tabs.create({ url: currentUrl, active: false });
+}
+
+// Makes a search query for the comic number specified
+function searchComic() {
+  if (window.event.keyCode === 13){
+    comicSearch = document.getElementById("input").committedValue;
+    if(comicSearch > 0 && comicSearch <= latestComic)
+      setComic("http://xkcd.com/" + comicSearch + "/info.0.json");
+    document.getElementById("input").value = "";
+  }
 }

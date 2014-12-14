@@ -37,7 +37,6 @@ img {
   height: 442px;
 }
 
-.navigation paper-icon-button {
-  margin-left: 5px;
-  margin-right: 5px;
+.navigation {
+  position:400px;
 }
