@@ -46,6 +46,7 @@ function setup() {
   latestComic = this.response.num;
   var listener = reqListener.bind(this);
   listener();
+  document.getElementById("end").dismiss();
 }
 
 // Send HTTP request and retrieve info of the comic from specified url
@@ -60,13 +61,18 @@ function setComic(url) {
 // Navigation functions
 // Get first comic
 function getFirst() {
-  setComic("http://xkcd.com/1/info.0.json");
+  if (displayedComic != 1)
+    setComic("http://xkcd.com/1/info.0.json");
+  else
+    document.getElementById("end").show();
 }
 
 // Get previous comic
 function getPrevious() {
   if ( displayedComic - 1 >= 1 )
     setComic("http://xkcd.com/"+ (displayedComic - 1) + "/info.0.json");
+  else
+    document.getElementById("end").show();
 }
 
 // Get random comic
@@ -79,11 +85,16 @@ function getRandom() {
 function getNext() {
   if(displayedComic + 1 <= latestComic)
     setComic("http://xkcd.com/"+ (displayedComic + 1) + "/info.0.json");
+  else
+    document.getElementById("end").show();
 }
 
 // Get most recent comic
 function getLast() {
-  setComic("http://xkcd.com/info.0.json");
+  if(displayedComic != latestComic)
+    setComic("http://xkcd.com/info.0.json");
+  else
+    document.getElementById("end").show();
 }
 
 // Opens a new tab to the page the comic is located at
@@ -93,10 +104,17 @@ function openComic() {
 
 // Makes a search query for the comic number specified
 function searchComic() {
-  if (window.event.keyCode === 13){
+  if (window.event.keyCode === 13) {
     comicSearch = document.getElementById("input").committedValue;
-    if(comicSearch > 0 && comicSearch <= latestComic)
+    if(comicSearch.match(/[a-z]/i)) {
+      document.getElementById("badinput").show();
+    }
+    else if(comicSearch > 0 && comicSearch <= latestComic) {
       setComic("http://xkcd.com/" + comicSearch + "/info.0.json");
+    }
+    else {
+      document.getElementById("badnum").show();
+    }
     document.getElementById("input").value = "";
   }
 }

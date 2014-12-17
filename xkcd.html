@@ -8,6 +8,7 @@
     <link rel="import" href="components/paper-input/paper-input-decorator.html">
     <link rel="import" href="components/core-icons/notification-icons.html">
     <link rel="import" href="components/core-input/core-input.html">
+    <link rel="import" href="components/paper-toast/paper-toast.html">
     <script src="xkcd-handler.js" async></script>
   </head>
 
@@ -20,7 +21,7 @@
             <img id="comic">
           </div>
           <div horizontal justified layout>
-            <div><img src="assets/xkcd_48.png"></div>
+            <div><img class="logo" src="assets/xkcd_48.png"></div>
             <div class="navigation">
               <paper-icon-button id="first" src="assets/start.png" title="First"></paper-icon-button>
               <paper-icon-button id="prev" src="assets/back.png" title="Previous"></paper-icon-button>
@@ -35,6 +36,10 @@
             </div>
           </div>
       </div>
+
+      <paper-toast id="end" text="You have reached the end." duration=1500></paper-toast>
+      <paper-toast id="badinput" text="You have entered an invalid search input." duration=1500></paper-toast>
+      <paper-toast id="badnum" text="Could not find comic with inputted number." duration=1500></paper-toast>
 
   </body>
 </html>
