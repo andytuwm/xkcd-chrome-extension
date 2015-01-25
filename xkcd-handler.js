@@ -14,6 +14,7 @@ var next = document.getElementById("next");
 var last = document.getElementById("last");
 var image = document.getElementById("comic");
 var search = document.getElementById("search");
+var help = document.getElementById("explain");
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
 rand.onload = rand.addEventListener("click", getRandom, false);
@@ -21,6 +22,7 @@ next.onload = next.addEventListener("click", getNext, false);
 last.onload = last.addEventListener("click", getLast, false);
 image.onload = image.addEventListener("click", openComic, false);
 search.onload = search.addEventListener("keyup", searchComic, false);
+explain.onload = explain.addEventListener("click", openHelp, false);
 
 // Initialize to most recent comic
 // Specify json response type since xkcd stores comic info in json
@@ -117,4 +119,9 @@ function searchComic() {
     }
     document.getElementById("input").value = "";
   }
+}
+
+function openHelp() {
+  chrome.tabs.create({ url: "http://www.explainxkcd.com/wiki/index.php/"
+  + displayedComic, active: false });
 }

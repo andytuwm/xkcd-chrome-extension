@@ -40,12 +40,22 @@ img {
   height: 442px;
 }
 
+#explain {
+  position: relative;
+  top: -5px;
+}
+
 /* Position the navigation bar at the center. */
 .navigation {
   position: relative;
-  left: 53px;
+  left: 10px;
 }
 
+/* Align the search bar with the other buttons. */
+#search {
+  position:relative;
+  top:-10px;
+}
 /* This additional margin is used to make the toast popup cover the logo completely
 so that it looks nicer. Otherwise there'd be a small protruding edge. */
 paper-toast {
