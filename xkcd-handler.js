@@ -5,6 +5,7 @@ var displayedComic = null;
 var latestComic = null;
 var comicSearch = null;
 var currentUrl = "http://xkcd.com/";
+var hist = [];
 
 // Eventlisteners for buttons
 var first = document.getElementById("first");
@@ -48,7 +49,7 @@ function setup() {
   latestComic = this.response.num;
   var listener = reqListener.bind(this);
   listener();
-  document.getElementById("end").dismiss();
+  document.getElementById("end").dismiss;
 }
 
 // Send HTTP request and retrieve info of the comic from specified url
@@ -58,6 +59,7 @@ function setComic(url) {
   Req.onload = reqListener;
   Req.open("GET", url, true);
   Req.send();
+  update(hist);
 }
 
 // Navigation functions
@@ -121,7 +123,19 @@ function searchComic() {
   }
 }
 
+// Opens a new tab to the corresponding comic's explainxkcd wiki page
 function openHelp() {
   chrome.tabs.create({ url: "http://www.explainxkcd.com/wiki/index.php/"
   + displayedComic, active: false });
+}
+
+// Stores history of viewed comics as a queue of ten
+function update(history) {
+  if(history.length < 10) {
+    history.push(displayedComic);
+  } else {
+    history.shift();
+    history.push(displayedComic);
+  }
+  //console.log(history);
 }
