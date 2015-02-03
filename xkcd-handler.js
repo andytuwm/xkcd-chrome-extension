@@ -7,6 +7,12 @@ var comicSearch = null;
 var currentUrl = "http://xkcd.com/";
 var hist = [];
 
+// Retrieve history from chrome.storage.sync
+chrome.storage.sync.get('browsed', function(array){
+  hist = array.browsed;
+  //console.log(hist);
+});
+
 // Eventlisteners for buttons
 var first = document.getElementById("first");
 var prev = document.getElementById("prev");
@@ -138,4 +144,8 @@ function update(history) {
     history.push(displayedComic);
   }
   //console.log(history);
+  // Save history with chrome.storage.sync
+  chrome.storage.sync.set({'browsed': history}, function() {
+    //console.log("History saved.");
+  });
 }
