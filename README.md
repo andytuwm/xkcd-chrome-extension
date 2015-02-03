@@ -11,6 +11,11 @@ Type a number and press enter to search for the comic with the specified comic n
 
 Installation
 ====
+
+Download straight from the [Chrome Web Store](https://chrome.google.com/webstore/detail/xkcd-comics-viewer/nmanlcmfmdmfcijmocmihompgjcljacd)
+
+
+
 If you have the canary version of Chrome or the dev version:
 ```
 1) Download the .crx extension file from the [Releases](https://github.com/andytuwm/xkcd-chrome-extension/releases) page
