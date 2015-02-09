@@ -34,16 +34,16 @@
 
       /**
        * The current value of the input.
-       * 
+       *
        * @attribute value
        * @type String
        * @default ''
        */
       value: '',
-      
+
       /**
        * The most recently committed value of the input.
-       * 
+       *
        * @attribute committedValue
        * @type String
        * @default ''
@@ -52,15 +52,22 @@
 
     },
 
+    /**
+     * Focuses the `input`.
+     *
+     * @method focus
+     */
+    focus: function() {
+      this.$.input.focus();
+    },
+
     valueChanged: function() {
       this.$.decorator.updateLabelVisibility(this.value);
     },
 
     changeAction: function(e) {
-      if (!window.ShadowDOMPolyfill) {
-        // re-fire event that does not bubble across shadow roots
-        this.fire('change', null, this);
-      }
+      // re-fire event that does not bubble across shadow roots
+      this.fire('change', null, this);
     }
 
   });

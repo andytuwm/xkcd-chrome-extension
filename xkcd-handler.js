@@ -7,7 +7,7 @@ var comicSearch = null;
 var currentUrl = "http://xkcd.com/";
 var hist = [];
 
-// Retrieve history from chrome.storage.sync
+// Retrieve history from chrome.storage.sync on start
 chrome.storage.sync.get('browsed', function(array){
   hist = array.browsed;
   //console.log(hist);

@@ -1,7 +1,7 @@
 
     WCT.loadSuites([
-      'a11y.html',
-      'autogrow.html',
-      'decorator.html'
+      'paper-autogrow-textarea.html',
+      'paper-input-decorator.html',
+      'paper-input.html'
     ]);
   

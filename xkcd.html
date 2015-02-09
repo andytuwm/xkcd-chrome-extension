@@ -9,10 +9,16 @@
     <link rel="import" href="components/core-icons/notification-icons.html">
     <link rel="import" href="components/core-input/core-input.html">
     <link rel="import" href="components/paper-toast/paper-toast.html">
+    <link rel="import" href="components/core-menu/core-menu.html">
+    <link rel="import" href="components/paper-dropdown/paper-dropdown.html">
+    <link rel="import" href="components/paper-menu-button/paper-menu-button.html">
+    <link rel="import" href="components/paper-item/paper-item.html">
+    <link rel="import" href="components/web-animations-js/web-animations.html">
     <script src="xkcd-handler.js" async></script>
+
   </head>
 
-  <body>
+  <body unresolved>
 
       <div id="comicContainer">
           <h1 id="comicTitle"></h1>
@@ -23,8 +29,17 @@
           <div horizontal justified layout>
             <div>
               <img class="logo" src="assets/xkcd_48.png">
-              <paper-icon-button id="explain" icon="info-outline" title="Help"></paper-icon-button>
-              <paper-icon-button id="history" icon="schedule" title="History"></paper-icon-button>
+              <paper-icon-button id="explain" icon="info-outline" title="Explain"></paper-icon-button>
+              <paper-menu-button>
+                <paper-icon-button id="history" icon="schedule" title="History"></paper-icon-button>
+                <paper-dropdown class="dropdown" id="no-pad" valign="bottom" duration="200">
+                  <core-menu>
+                    <paper-item class="smallmenu"><div>TEST1</div></paper-item>
+                    <paper-item class="smallmenu"><div>TEST2</div></paper-item>
+                    <paper-item class="smallmenu"><div>TEST3</div></paper-item>
+                  </core-menu>
+                </paper-dropdown>
+              </paper-menu-button>
             </div>
             <div class="navigation">
               <paper-icon-button id="first" src="assets/start.png" title="First"></paper-icon-button>

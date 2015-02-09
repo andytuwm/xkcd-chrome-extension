@@ -63,6 +63,17 @@
         isInvalid: false,
 
         /**
+         * Set this property to true to validate the input as the user types.
+         * This will not validate when changing the input programmatically; call
+         * `validate()` instead.
+         *
+         * @attribute autoValidate
+         * @type boolean
+         * @default false
+         */
+        autoValidate: false,
+
+        /**
          * The message to display if the input value fails validation. If this
          * is unset or the empty string, a default message is displayed depending
          * on the type of validation error.
@@ -151,6 +162,30 @@
         return true;
       },
 
+      animateUnderline: function(e) {
+        if (this.focused) {
+          var rect = this.$.underline.getBoundingClientRect();
+          var right = e.x - rect.left;
+          this.$.focusedUnderline.style.mozTransformOrigin = right + 'px';
+          this.$.focusedUnderline.style.webkitTransformOrigin = right + 'px ';
+          this.$.focusedUnderline.style.transformOriginX = right + 'px';
+
+          // Animations only run when the user interacts with the input
+          this.underlineAnimated = true;
+        }
+      },
+
+      /**
+       * Validate the input using HTML5 Constraints.
+       *
+       * @method validate
+       * @return {boolean} True if the input is valid.
+       */
+      validate: function() {
+        this.isInvalid = !this.input.validity.valid;
+        return this.input.validity.valid;
+      },
+
       _labelVisibleChanged: function(old) {
         // do not do the animation on first render
         if (old !== undefined) {
@@ -180,12 +215,21 @@
 
       focusedChanged: function() {
         this.updateLabelVisibility(this.input && this.input.value);
+        if (this.lastEvent) {
+          this.animateUnderline(this.lastEvent);
+          this.lastEvent = null;
+        }
+        this.underlineVisible = this.focused;
       },
 
       inputChanged: function(old) {
         if (this.input) {
           this.updateLabelVisibility(this.input.value);
           this.updateInputLabel(this.input, this.label);
+
+          if (this.autoValidate) {
+            this.validate();
+          }
         }
         if (old) {
           this.updateInputLabel(old, '');
@@ -196,7 +240,7 @@
         this.focused = true;
       },
 
-      blurAction: function(e) {
+      blurAction: function() {
         this.focused = false;
       },
 
@@ -226,11 +270,25 @@
         }
       },
 
-      inputAction: function(e) {
-        this.updateLabelVisibility(e.target.value);
+      inputAction: function() {
+        this.updateLabelVisibility(this.input.value);
+        if (this.autoValidate) {
+          this.validate();
+        }
       },
 
       downAction: function(e) {
+        // eat the event and do nothing if already focused
+        if (e.target !== this.input && this.focused) {
+          e.preventDefault();
+          return;
+        }
+        // cache the event here because "down" fires before "focus" when tapping on
+        // the input and the underline animation runs on focus change
+        this.lastEvent = e;
+      },
+
+      tapAction: function(e) {
         if (this.disabled) {
           return;
         }
@@ -243,21 +301,6 @@
           this.input.focus();
           e.preventDefault();
         }
-
-        // The underline spills from the tap location
-        var rect = this.$.underline.getBoundingClientRect();
-        var right = e.x - rect.left;
-        this.$.focusedUnderline.style.mozTransformOrigin = right + 'px';
-        this.$.focusedUnderline.style.webkitTransformOrigin = right + 'px ';
-        this.$.focusedUnderline.style.transformOriginX = right + 'px';
-
-        // Animations only run when the user interacts with the input
-        this.underlineAnimated = true;
-
-        // Handle interrupted animation
-        this.async(function() {
-          this.transitionEndAction();
-        }, null, 250);
       },
 
       transitionEndAction: function() {
@@ -266,6 +309,14 @@
         if (this._labelVisible) {
           this.input.placeholder = this.label;
         }
+      },
+
+      charCounterErrorAction: function(e) {
+        this.isInvalid = e.detail.hasError;
+
+        // If the allowed characters have been exceeded, show either the error
+        // icon, or the character counter, but not both.
+        this.$.errorIcon.hidden = e.detail.hideErrorIcon;
       }
 
     });

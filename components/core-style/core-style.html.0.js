@@ -42,7 +42,7 @@ Polymer('core-style', {
    * inside another.
    *
    * @attribute list
-   * @type object (readonly)
+   * @type object
    * @default {map of all `core-style` producers}
    */
   list: CoreStyle.list,
