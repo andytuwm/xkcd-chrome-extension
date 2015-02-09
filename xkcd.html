@@ -35,7 +35,9 @@
                 <paper-dropdown class="dropdown" id="no-pad" valign="bottom" duration="200">
                   <core-menu>
                     <template id="array" is="auto-binding" repeat="{{historyList}}">
-                      <paper-item class="smallmenu"><div>{{}}</div></paper-item>
+                      <paper-item class="smallmenu" on-click="">
+                        <div>{{disp}}</div>
+                      </paper-item>
                     </template>
                   </core-menu>
                 </paper-dropdown>

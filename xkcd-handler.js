@@ -9,16 +9,14 @@ var currentUrl = "http://xkcd.com/";
 var arraybind = document.querySelector('#array');
 var hist = [];
 
-// Retrieve history from chrome.storage.sync on start
+// Retrieve history from chrome.storage.sync on start.
+// Set saved history array for data binding.
 chrome.storage.sync.get('browsed', function(array){
   hist = array.browsed;
   arraybind.historyList = hist;
-  console.log(arraybind.historyList);
+  //console.log(arraybind.historyList);
   //console.log(hist);
 });
-
-
-
 
 // Eventlisteners for buttons
 var first = document.getElementById("first");
@@ -145,16 +143,14 @@ function openHelp() {
 
 // Stores history of viewed comics as a queue of ten
 function update(history) {
-
   var title = displayedComic + ": " + comicTitle
 
   if(history.length < 10) {
-    history.push(title);
+    history.push({com: displayedComic,disp: title});
   } else {
     history.shift();
-    history.push(title);
+    history.push({com: displayedComic,disp: title});
   }
-
   arraybind.historyList = history;
 
   console.log(history);
