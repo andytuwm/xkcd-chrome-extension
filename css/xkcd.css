@@ -87,7 +87,7 @@ paper-toast {
 paper-dropdown.dropdown {
   display: table; /* Set to table to force dropdown to wrap list items. */
   bottom:15px;
-  width: 210px;
+  width: 190px;
   max-width:210px;
   max-height:330px;
 }
@@ -109,7 +109,8 @@ paper-dropdown.dropdown > core-menu {
 
 /* Vertically center the text within the list. Accounts for paper-item
    .button-content padding. */
-paper-item > div {
+paper-item.smallmenu > div {
   position:relative;
-  top:-10px;
+  top: -10px;
+  font-size: 14px;
 }

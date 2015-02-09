@@ -4,14 +4,21 @@ var oReq = new XMLHttpRequest();
 var displayedComic = null;
 var latestComic = null;
 var comicSearch = null;
+var comicTitle = null;
 var currentUrl = "http://xkcd.com/";
+var arraybind = document.querySelector('#array');
 var hist = [];
 
 // Retrieve history from chrome.storage.sync on start
 chrome.storage.sync.get('browsed', function(array){
   hist = array.browsed;
+  arraybind.historyList = hist;
+  console.log(arraybind.historyList);
   //console.log(hist);
 });
+
+
+
 
 // Eventlisteners for buttons
 var first = document.getElementById("first");
@@ -41,12 +48,13 @@ oReq.send();
 // Populates title and image, sets the current comic from the json response
 function reqListener() {
   displayedComic = this.response.num;
+  comicTitle = this.response.title;
   currentUrl = "http://xkcd.com/" + displayedComic;
 
   document.getElementById("comicTitle").innerHTML = this.response.title;
   document.getElementById("comicNumber").innerHTML = "#"+displayedComic;
   document.getElementById("comic").src = this.response.img;
-  document.getElementById("comic").alt = this.response.title;
+  document.getElementById("comic").alt = comicTitle;
   document.getElementById("comic").title = this.response.alt;
 }
 
@@ -137,13 +145,19 @@ function openHelp() {
 
 // Stores history of viewed comics as a queue of ten
 function update(history) {
+
+  var title = displayedComic + ": " + comicTitle
+
   if(history.length < 10) {
-    history.push(displayedComic);
+    history.push(title);
   } else {
     history.shift();
-    history.push(displayedComic);
+    history.push(title);
   }
-  //console.log(history);
+
+  arraybind.historyList = history;
+
+  console.log(history);
   // Save history with chrome.storage.sync
   chrome.storage.sync.set({'browsed': history}, function() {
     //console.log("History saved.");
