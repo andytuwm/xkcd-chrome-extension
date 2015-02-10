@@ -33,9 +33,9 @@
               <paper-menu-button>
                 <paper-icon-button id="history" icon="schedule" title="History"></paper-icon-button>
                 <paper-dropdown class="dropdown" id="no-pad" valign="bottom" duration="200">
-                  <core-menu>
+                  <core-menu id="historyMenu">
                     <template id="array" is="auto-binding" repeat="{{historyList}}">
-                      <paper-item class="smallmenu" on-click="">
+                      <paper-item class="smallmenu">
                         <div>{{disp}}</div>
                       </paper-item>
                     </template>

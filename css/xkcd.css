@@ -100,7 +100,7 @@ paper-dropdown.dropdown > core-menu > paper-item {
 
 /* Remove margins in dropdown. */
 paper-dropdown.dropdown > core-menu {
-  margin:0;
+  margin: 0;
 }
 /* Give each listing in history dropdown height of 30px. */
 .smallmenu {

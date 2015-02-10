@@ -27,6 +27,7 @@ var last = document.getElementById("last");
 var image = document.getElementById("comic");
 var search = document.getElementById("search");
 var help = document.getElementById("explain");
+var menuItemGetter = document.querySelector('#historyMenu');
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
 rand.onload = rand.addEventListener("click", getRandom, false);
@@ -35,6 +36,7 @@ last.onload = last.addEventListener("click", getLast, false);
 image.onload = image.addEventListener("click", openComic, false);
 search.onload = search.addEventListener("keyup", searchComic, false);
 explain.onload = explain.addEventListener("click", openHelp, false);
+menuItemGetter.onload = menuItemGetter.addEventListener("core-activate", restoreComic, false);
 
 // Initialize to most recent comic
 // Specify json response type since xkcd stores comic info in json
@@ -145,6 +147,7 @@ function openHelp() {
 function update(history) {
   var title = displayedComic + ": " + comicTitle
 
+  // Store history as a map of (comic number: displayed title).
   if(history.length < 10) {
     history.push({com: displayedComic,disp: title});
   } else {
@@ -153,9 +156,19 @@ function update(history) {
   }
   arraybind.historyList = history;
 
-  console.log(history);
+  //console.log(history);
   // Save history with chrome.storage.sync
   chrome.storage.sync.set({'browsed': history}, function() {
-    //console.log("History saved.");
+  //console.log("History saved.");
   });
+}
+
+function restoreComic() {
+  // Grab index of menu item clicked
+  comicIndex = menuItemGetter.selectedIndex;
+  //console.log(comicIndex);
+  // Grab stored comic number from history queue
+  var comicNum = hist[comicIndex].com;
+  //console.log(comicNum);
+  setComic("http://xkcd.com/"+ comicNum + "/info.0.json");
 }
