@@ -28,6 +28,7 @@ var image = document.getElementById("comic");
 var search = document.getElementById("search");
 var help = document.getElementById("explain");
 var menuItemGetter = document.querySelector('#historyMenu');
+var background = chrome.extension.connect({name: "closeListener"});
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
 rand.onload = rand.addEventListener("click", getRandom, false);
@@ -37,6 +38,8 @@ image.onload = image.addEventListener("click", openComic, false);
 search.onload = search.addEventListener("keyup", searchComic, false);
 explain.onload = explain.addEventListener("click", openHelp, false);
 menuItemGetter.onload = menuItemGetter.addEventListener("core-activate", restoreComic, false);
+//addEventListener("Port.onDisconnect", onClose, false);
+background.onDisconnect.addListener(onClose);
 
 // Initialize to most recent comic
 // Specify json response type since xkcd stores comic info in json
@@ -145,22 +148,24 @@ function openHelp() {
 
 // Stores history of viewed comics as a queue of ten
 function update(history) {
-  var title = displayedComic + ": " + comicTitle
+  var title = displayedComic + ": " + comicTitle;
+  var stored = {com: displayedComic,disp: title};
 
   // Store history as a map of (comic number: displayed title).
-  if(history.length < 10) {
-    history.push({com: displayedComic,disp: title});
-  } else {
-    history.shift();
-    history.push({com: displayedComic,disp: title});
+  if( !historyContains(history,displayedComic)) {
+    if(history.length < 10) {
+      history.push(stored);
+    } else {
+      history.shift();
+      history.push(stored);
+    }
+    arraybind.historyList = history;
+    //console.log(history);
+    // Save history with chrome.storage.sync
+    chrome.storage.sync.set({'browsed': history}, function() {
+    //console.log("History saved.");
+    });
   }
-  arraybind.historyList = history;
-
-  //console.log(history);
-  // Save history with chrome.storage.sync
-  chrome.storage.sync.set({'browsed': history}, function() {
-  //console.log("History saved.");
-  });
 }
 
 function restoreComic() {
@@ -171,4 +176,20 @@ function restoreComic() {
   var comicNum = hist[comicIndex].com;
   //console.log(comicNum);
   setComic("http://xkcd.com/"+ comicNum + "/info.0.json");
+}
+
+function onClose() {
+  if (displayedComic != latestComic) {
+    update(hist);
+  }
+}
+
+// Check if comic num is already in history.
+function historyContains(jsonArray,num) {
+  for (var i = 0; i < jsonArray.length; i++) {
+    if (jsonArray[i].com == num) {
+      return true;
+    }
+  }
+  return false;
 }
