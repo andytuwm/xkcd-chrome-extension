@@ -18,6 +18,13 @@ chrome.storage.sync.get('browsed', function(array){
   //console.log(hist);
 });
 
+// Initialize to most recent comic
+// Specify json response type since xkcd stores comic info in json
+oReq.responseType = "json";
+oReq.onload = setup;
+oReq.open("GET", "http://xkcd.com/info.0.json", true);
+oReq.send();
+
 // Eventlisteners for buttons
 var first = document.getElementById("first");
 var prev = document.getElementById("prev");
@@ -28,7 +35,7 @@ var image = document.getElementById("comic");
 var search = document.getElementById("search");
 var help = document.getElementById("explain");
 var menuItemGetter = document.querySelector('#historyMenu');
-var background = chrome.extension.connect({name: "closeListener"});
+
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
 rand.onload = rand.addEventListener("click", getRandom, false);
@@ -38,15 +45,6 @@ image.onload = image.addEventListener("click", openComic, false);
 search.onload = search.addEventListener("keyup", searchComic, false);
 explain.onload = explain.addEventListener("click", openHelp, false);
 menuItemGetter.onload = menuItemGetter.addEventListener("core-activate", restoreComic, false);
-//addEventListener("Port.onDisconnect", onClose, false);
-background.onDisconnect.addListener(onClose);
-
-// Initialize to most recent comic
-// Specify json response type since xkcd stores comic info in json
-oReq.responseType = "json";
-oReq.onload = setup;
-oReq.open("GET", "http://xkcd.com/info.0.json", true);
-oReq.send();
 
 // Populates title and image, sets the current comic from the json response
 function reqListener() {
@@ -59,6 +57,10 @@ function reqListener() {
   document.getElementById("comic").src = this.response.img;
   document.getElementById("comic").alt = comicTitle;
   document.getElementById("comic").title = this.response.alt;
+
+  // Update history here (on load of comic) so that the comic that user closes
+  // extension on will be saved too.
+  update(hist);
 }
 
 //Set most recent comic and run reqListener()
@@ -76,7 +78,7 @@ function setComic(url) {
   Req.onload = reqListener;
   Req.open("GET", url, true);
   Req.send();
-  update(hist);
+
 }
 
 // Navigation functions
@@ -176,12 +178,6 @@ function restoreComic() {
   var comicNum = hist[comicIndex].com;
   //console.log(comicNum);
   setComic("http://xkcd.com/"+ comicNum + "/info.0.json");
-}
-
-function onClose() {
-  if (displayedComic != latestComic) {
-    update(hist);
-  }
 }
 
 // Check if comic num is already in history.
