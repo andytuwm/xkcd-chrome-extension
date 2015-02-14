@@ -158,7 +158,8 @@ function update(history) {
   var stored = {com: displayedComic,disp: title};
 
   // Store history as a map of (comic number: displayed title).
-  if( !historyContains(history,displayedComic)) {
+  if( !historyContains(history, displayedComic)) {
+
     if(history.length < 10) {
       history.push(stored);
     } else {
@@ -171,6 +172,15 @@ function update(history) {
     chrome.storage.sync.set({'browsed': history}, function() {
     //console.log("History saved.");
     });
+  } else {
+    var index = findIndex(history, displayedComic);
+    if (index > -1) {
+      var el = history.splice( index, 1);
+      history.push(el[0]);
+      //console.log(history);
+    } else {
+      console.error('Error: Index should always be found if comic was found in history.')
+    }
   }
 }
 
@@ -185,11 +195,21 @@ function restoreComic() {
 }
 
 // Check if comic num is already in history.
-function historyContains(jsonArray,num) {
+function historyContains(jsonArray, num) {
   for (var i = 0; i < jsonArray.length; i++) {
     if (jsonArray[i].com == num) {
       return true;
     }
   }
   return false;
+}
+
+// Return index of the specified comic in history; if not found, return -1
+function findIndex(jsonArray, num) {
+  for (var i = 0; i < jsonArray.length; i++) {
+    if (jsonArray[i].com == num) {
+      return i;
+    }
+  }
+  return -1;
 }
