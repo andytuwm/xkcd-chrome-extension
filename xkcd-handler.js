@@ -129,8 +129,11 @@ function openComic() {
 function searchComic() {
   if (window.event.keyCode === 13) {
     comicSearch = document.getElementById("input").committedValue;
-    if(comicSearch.match(/[a-z]/i)) {
+    if(comicSearch.match(/[a-z]/i) || !comicSearch.match(/[0-9]+/)) {
       document.getElementById("badinput").show();
+    }
+    else if(comicSearch == displayedComic) {
+      document.getElementById("already").show();
     }
     else if(comicSearch > 0 && comicSearch <= latestComic) {
       setComic("http://xkcd.com/" + comicSearch + "/info.0.json");
@@ -138,6 +141,7 @@ function searchComic() {
     else {
       document.getElementById("badnum").show();
     }
+    // Clear search text input field
     document.getElementById("input").value = "";
   }
 }

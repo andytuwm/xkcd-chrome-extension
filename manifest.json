@@ -4,7 +4,7 @@
   "name": "xkcd - Comics Viewer",
   "short_name": "xkcd-view",
   "description": "View xkcd comics from any page.",
-  "version": "1.1.0",
+  "version": "1.1.1",
 
   "icons": {
       "128": "assets/xkcd_128.png",
