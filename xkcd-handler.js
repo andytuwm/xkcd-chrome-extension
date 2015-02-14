@@ -168,10 +168,7 @@ function update(history) {
     }
     arraybind.historyList = history;
     //console.log(history);
-    // Save history with chrome.storage.sync
-    chrome.storage.sync.set({'browsed': history}, function() {
-    //console.log("History saved.");
-    });
+
   } else {
     var index = findIndex(history, displayedComic);
     if (index > -1) {
@@ -182,6 +179,10 @@ function update(history) {
       console.error('Error: Index should always be found if comic was found in history.')
     }
   }
+  // Save history with chrome.storage.sync
+  chrome.storage.sync.set({'browsed': history}, function() {
+  //console.log("History saved.");
+  });
 }
 
 function restoreComic() {
