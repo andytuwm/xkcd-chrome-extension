@@ -78,7 +78,6 @@ function setComic(url) {
   Req.onload = reqListener;
   Req.open("GET", url, true);
   Req.send();
-
 }
 
 // Navigation functions
@@ -193,6 +192,10 @@ function restoreComic() {
   var comicNum = hist[comicIndex].com;
   //console.log(comicNum);
   setComic("http://xkcd.com/"+ comicNum + "/info.0.json");
+  //console.log(menuItemGetter.selected);
+
+  // Clear dropdown sticky selection
+  menuItemGetter.selected = null;
 }
 
 // Check if comic num is already in history.
