@@ -171,7 +171,7 @@ function update(history) {
     //console.log(history);
 
   } else {
-    var index = comicIndex;
+    var index = findIndex(history, displayedComic);
     if (index > -1) {
       var el = history.splice( index, 1);
       history.push(el[0]);
@@ -208,6 +208,16 @@ function historyContains(jsonArray, num) {
     }
   }
   return false;
+}
+
+// Return index of the specified comic in history; if not found, return -1
+function findIndex(jsonArray, num) {
+  for (var i = 0; i < jsonArray.length; i++) {
+    if (jsonArray[i].com == num) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 function imgError() {
