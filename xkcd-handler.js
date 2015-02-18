@@ -35,6 +35,7 @@ var image = document.getElementById("comic");
 var search = document.getElementById("search");
 var help = document.getElementById("explain");
 var menuItemGetter = document.querySelector('#historyMenu');
+var img = document.querySelector('#comic');
 
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
@@ -45,6 +46,7 @@ image.onload = image.addEventListener("click", openComic, false);
 search.onload = search.addEventListener("keyup", searchComic, false);
 explain.onload = explain.addEventListener("click", openHelp, false);
 menuItemGetter.onload = menuItemGetter.addEventListener("core-activate", restoreComic, false);
+img.onerror = imgError;
 
 // Populates title and image, sets the current comic from the json response
 function reqListener() {
@@ -206,4 +208,8 @@ function historyContains(jsonArray, num) {
     }
   }
   return false;
+}
+
+function imgError() {
+  document.getElementById("404").show();
 }
