@@ -15,3 +15,11 @@ Installation
 ====
 
 Download from the [Chrome Web Store](https://chrome.google.com/webstore/detail/xkcd-comics-viewer/nmanlcmfmdmfcijmocmihompgjcljacd)
+
+If performance of Chrome web store extension is unsatisfactory (2+ seconds to load popup), try loading the extension unpacked with the following steps:
+```
+1. Click 'Download Zip' on the right
+2. Extract xkcd-chrome-extension-master
+3. Goto chrome://extensions and check 'Developer Mode'
+4. Click 'Load Unpacked Extension' and find the folder you extracted
+```
