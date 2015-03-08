@@ -4,7 +4,7 @@
   "name": "xkcd - Comics Viewer",
   "short_name": "xkcd-view",
   "description": "View xkcd comics from any page.",
-  "version": "1.1.6",
+  "version": "1.1.8",
 
   "icons": {
       "128": "assets/xkcd_128.png",
@@ -13,7 +13,7 @@
 
   "browser_action": {
     "default_icon": "assets/xkcd_128.png",
-    "default_popup": "xkcd.html",
+    "default_popup": "bin/xkcd.html",
     "default_name": "View xkcd"
   },
 
@@ -23,7 +23,7 @@
     "http://xkcd.com/",
     "storage"],
 
-  "background": {
-    "page": "xkcd.html"
-  }
+    "background": {
+      "page": "xkcd.html"
+    }
 }

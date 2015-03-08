@@ -2,7 +2,8 @@
  Copyright 2013 The Polymer Authors. All rights reserved.
  Use of this source code is governed by a BSD-style
  license that can be found in the LICENSE file.
---><html><head><link rel="import" href="../polymer-gestures/polymer-gestures.html">
+-->
+<link rel="import" href="../polymer-gestures/polymer-gestures.html">
 <link rel="import" href="../polymer-expressions/polymer-expressions.html">
 <link rel="import" href="layout.html">
 <script src="src/polymer.js"></script>
@@ -10,8 +11,16 @@
 <script src="src/system/module.js"></script>
 
 <!-- Do not load in the presence of webcomponents.js  -->
-</head><body><scripts>
-	<script src="polymer.html.0.js"></script>
+<scripts>
+	<script>
+	(function() {
+		// evacipate all scripts in parent!
+		if (window.WebComponents) {
+			var scripts = document._currentScript.parentNode;
+			scripts.parentNode.removeChild(scripts);
+		}
+	})();
+	</script>
 	<script src="src/system/compat.js"></script>
 	<script src="src/system/HTMLImports/base.js"></script>
 	<script src="src/system/unresolved.js"></script>
@@ -52,4 +61,3 @@
 <script src="src/declaration/polymer-element.js"></script>
 <script src="src/lib/import.js"></script>
 <script src="src/lib/auto-binding.js"></script>
-</body></html>

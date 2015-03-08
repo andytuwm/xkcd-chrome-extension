@@ -6,8 +6,11 @@
     The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><!DOCTYPE html><html lang="en"><head>
-  <meta charset="utf-8">
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
   <script src="../../polymer.js"></script>
   <script src="elements.js"></script>
 </head>
@@ -51,7 +54,15 @@
 
   <!-- inline script -->
   <polymer-element name="x-baz" extends="x-zot">
-    <script src="index.html.0.js"></script>
+    <script>
+      Polymer('x-baz', {
+        ready: function() {
+          this.style.padding = '4px';
+          this.style.backgroundColor = 'tomato';
+          this.super();
+        }
+      });
+    </script>
   </polymer-element>
 
   <!-- inline external script -->
@@ -62,6 +73,5 @@
     <script src="x-quux.js"></script>
   </polymer-element>
 
-
-
-</body></html>
+</body>
+</html>

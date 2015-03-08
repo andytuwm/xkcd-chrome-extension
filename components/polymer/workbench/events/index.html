@@ -1,8 +1,11 @@
-<!DOCTYPE html><!--
+<!DOCTYPE html>
+<!--
 Copyright 2013 The Polymer Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
---><html><head>
+-->
+<html>
+<head>
   <title>polymer::events</title>
   <meta charset="utf-8">
   <script src="../../polymer.js"></script>
@@ -39,7 +42,19 @@ license that can be found in the LICENSE file.
         <content></content>
       </div>
     </template>
-    <script src="index.html.0.js"></script>
+    <script>
+      Polymer('x-basic', {
+        hostClickHandler: function(inEvent, inDetail, inSender) {
+          console.log('clicked on host!', this.localName, inEvent);
+        },
+        localClickHandler: function(inEvent, inDetail, inSender) {
+          console.log('clicked on local div!', this.localName, inEvent);
+        },
+        localDistributedClickHandler: function(inEvent, inDetail, inSender) {
+          console.log('clicked on local div around an insertion point!', this.localName, inEvent);
+        }
+      });
+    </script>
   </polymer-element>
 
   <h4>Composed custom elements using declarative events</h4>
@@ -68,10 +83,18 @@ license that can be found in the LICENSE file.
           without event path, only host events fires.)</div>
       </x-basic>
     </template>
-    <script src="index.html.1.js"></script>
+    <script>
+      Polymer('x-simple-composed', {
+        hostClickHandler: function(inEvent, inDetail, inSender) {
+          console.log('clicked on host!', this.localName, inEvent);
+        },
+        localClickHandler: function(inEvent, inDetail, inSender) {
+          console.log('clicked on local div!', this.localName, inEvent);
+        }
+      });
+    </script>
   </polymer-element>
 
 
-
-
-</body></html>
+</body>
+</html>
