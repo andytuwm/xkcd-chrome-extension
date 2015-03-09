@@ -1,3 +1,4 @@
+window.onload = function() {
 // New XHR object to get data from xkcd
 var oReq = new XMLHttpRequest();
 // Variables to store comic numbers to keep track of which is displayed.
@@ -222,4 +223,5 @@ function findIndex(jsonArray, num) {
 
 function imgError() {
   document.getElementById("404").show();
+}
 }
