@@ -1,4 +1,6 @@
 window.onload = function() {
+
+setTimeout(function() {
 // New XHR object to get data from xkcd
 var oReq = new XMLHttpRequest();
 // Variables to store comic numbers to keep track of which is displayed.
@@ -7,7 +9,7 @@ var latestComic = null;
 var comicSearch = null;
 var comicTitle = null;
 var currentUrl = "http://xkcd.com/";
-var arraybind = document.querySelector('#array');
+var arraybind = document.getElementById('array');
 var hist = [];
 
 // Retrieve history from chrome.storage.sync on start.
@@ -35,8 +37,8 @@ var last = document.getElementById("last");
 var image = document.getElementById("comic");
 var search = document.getElementById("search");
 var help = document.getElementById("explain");
-var menuItemGetter = document.querySelector('#historyMenu');
-var img = document.querySelector('#comic');
+var menuItemGetter = document.getElementById('historyMenu');
+var img = document.getElementById('comic');
 
 first.onload = first.addEventListener("click", getFirst, false);
 prev.onload = prev.addEventListener("click", getPrevious, false);
@@ -48,6 +50,8 @@ search.onload = search.addEventListener("keyup", searchComic, false);
 explain.onload = explain.addEventListener("click", openHelp, false);
 menuItemGetter.onload = menuItemGetter.addEventListener("core-activate", restoreComic, false);
 img.onerror = imgError;
+
+
 
 // Populates title and image, sets the current comic from the json response
 function reqListener() {
@@ -224,4 +228,5 @@ function findIndex(jsonArray, num) {
 function imgError() {
   document.getElementById("404").show();
 }
+},100);
 }
