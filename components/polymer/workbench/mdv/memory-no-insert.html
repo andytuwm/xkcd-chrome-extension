@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<!--
+<!DOCTYPE html><!--
 Copyright 2013 The Polymer Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
--->
-<html>
-<head>
+--><html><head>
   <title>polymer::mdv</title>
   <meta charset="utf-8">
   <script src="../../polymer.js"></script>
@@ -43,76 +40,10 @@ license that can be found in the LICENSE file.
       <div foo="{{nine}}">nine</div>
       <div foo="{{ten}}">ten</div>
     </template>
-    <script>
-      Polymer('x-test', {
-        one: 'tomato',
-        two: 'steelblue',
-        three: 'whitesmoke',
-        four: 'tomato',
-        five: 'steelblue',
-        six: 'whitesmoke',
-        seven: 'tomato',
-        eight: 'steelblue',
-        nine: 'whitesmoke',
-        ten: 'tomato',
-        oneChanged: function() {
-          console.log('oneChanged', this.one);
-        },
-        twoChanged: function() {
-        },
-        threeChanged: function() {
-        },
-        fourChanged: function() {
-        },
-        fiveChanged: function() {
-        },
-        sixChanged: function() {
-        },
-        sevenChanged: function() {
-        },
-        eightChanged: function() {
-        },
-        nineChanged: function() {
-        },
-        tenChanged: function() {
-        }
-      });
-    </script>
+    <script src="memory-no-insert.html.0.js"></script>
   </polymer-element>
-  <script>
-    var work = document.querySelector('#work');
-    
-    function test(count) {
-      console.log('test', count);
-      clean();
-      make(count);
-      if (interval) {
-        setTimeout(function() {
-          test(count);
-        }, 250);
-      }
-    }
-    
-    function make(count) {
-      for (var i=0; i < count; i++) {
-        document.createElement('x-test');
-      }
-    }
-    
-    function clean() {
-    }
-    
-    var interval;
-    function continuous() {
-      interval = !interval;
-      console.log(interval);
-      if (interval) {
-        test(100);
-      } else {
-        clearTimeout(interval);
-      }
-    }
-  </script>
+  <script src="memory-no-insert.html.1.js"></script>
 
-</body>
-</html>
+
+
+</body></html>

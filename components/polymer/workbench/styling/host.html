@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<!--
+<!DOCTYPE html><!--
 Copyright 2013 The Polymer Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
--->
-<html>
-<head>
+--><html><head>
   <meta name="viewport" content="initial-scale=1.0">
   <title>Using @host styling</title>
   <script src="../../polymer.js"></script>
@@ -35,7 +32,7 @@ license that can be found in the LICENSE file.
       </style>
       <div>red background</div>
     </template>
-    <script>Polymer('x-foo')</script>
+    <script src="host.html.0.js"></script>
   </polymer-element>
   
   <polymer-element name="x-bar" extends="x-foo">
@@ -50,7 +47,7 @@ license that can be found in the LICENSE file.
       <shadow></shadow>
       <div>white text</div>
     </template>
-    <script>Polymer('x-bar')</script>
+    <script src="host.html.1.js"></script>
   </polymer-element>
   
   <polymer-element name="x-zot" extends="x-bar">
@@ -63,11 +60,12 @@ license that can be found in the LICENSE file.
         }
       </style>
       <shadow></shadow>
-      <div>orange border & gray background</div>
+      <div>orange border &amp; gray background</div>
     </template>
-    <script>Polymer('x-zot')</script>
+    <script src="host.html.2.js"></script>
   </polymer-element>
   
   <link rel="import" href="zim.html">
-</body>
-</html>
+
+
+</body></html>
