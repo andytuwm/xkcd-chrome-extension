@@ -193,7 +193,7 @@ function update(history) {
 
 function restoreComic() {
   // Grab index of menu item clicked
-  comicIndex = menuItemGetter.selectedIndex;
+  var comicIndex = menuItemGetter.selectedIndex;
   //console.log(comicIndex);
   // Grab stored comic number from history queue
   var comicNum = hist[comicIndex].com;
