@@ -47,7 +47,7 @@ next.onload = next.addEventListener("click", getNext, false);
 last.onload = last.addEventListener("click", getLast, false);
 image.onload = image.addEventListener("click", openComic, false);
 search.onload = search.addEventListener("keyup", searchComic, false);
-explain.onload = explain.addEventListener("click", openHelp, false);
+help.onload = help.addEventListener("click", openHelp, false);
 menuItemGetter.onload = menuItemGetter.addEventListener("core-activate", restoreComic, false);
 img.onerror = imgError;
 
