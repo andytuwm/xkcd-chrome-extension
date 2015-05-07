@@ -75,7 +75,7 @@ function setup() {
   latestComic = this.response.num;
   var listener = reqListener.bind(this);
   listener();
-  document.getElementById("end").dismiss;
+  document.getElementById("end").dismiss();
 }
 
 // Send HTTP request and retrieve info of the comic from specified url
@@ -182,7 +182,7 @@ function update(history) {
       history.push(el[0]);
       //console.log(history);
     } else {
-      console.error('Error: Index should always be found if comic was found in history.')
+      console.error('Error: Index should always be found if comic was found in history.');
     }
   }
   // Save history with chrome.storage.sync
@@ -229,4 +229,4 @@ function imgError() {
   document.getElementById("404").show();
 }
 },100);
-}
+};
