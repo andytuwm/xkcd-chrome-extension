@@ -2,9 +2,6 @@
 
 body {
     text-align: center;
-    overflow: hidden;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
 }
 
 
@@ -43,7 +40,6 @@ body {
 
 #comicTitle {
     font-size: 25px;
-    font-weight: 400;
     margin-bottom: 0;
     margin-top: 5px;
 }
@@ -67,13 +63,6 @@ body {
 .mdl-textfield {
     position: relative;
     bottom: 10px;
-}
-
-
-/* Position the navigation bar at the center. */
-
-.navigation {
-    position: relative;
 }
 
 button.mdl-button {
@@ -103,12 +92,4 @@ button.mdl-button {
 
 #historyMenu {
     padding: 0;
-}
-
-
-/* This additional margin is used to make the toast popup cover the logo completely
-so that it looks nicer. Otherwise there'd be a small protruding edge. */
-
-paper-toast {
-    margin-left: -3px;
 }
