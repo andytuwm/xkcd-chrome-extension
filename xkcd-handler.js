@@ -212,7 +212,7 @@ window.onload = function () {
     }
 
     function loadHistory() {
-        if (historyNeedsUpdate) {
+        if (historyNeedsUpdate && hist.length > 0) {
             var item;
             var oldChild = document.getElementById('histList');
             var newChild = document.createElement("div");

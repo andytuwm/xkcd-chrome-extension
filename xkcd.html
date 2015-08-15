@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="css/xkcd.css">
 
     <link rel="stylesheet" href="/mdl/material.min.css">
-    <script src="./mdl/material.min.js" async></script>
+    <script src="/mdl/material.min.js" async></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script src="xkcd-handler.js" async></script>
@@ -31,7 +31,9 @@
                 </button>
 
                 <ul id="historyMenu" class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" for="hist-button">
-                    <div id="histList"></div>
+                    <div id="histList">
+                        <li class="mdl-menu__item">No item's in history yet!</li>
+                    </div>
                 </ul>
 
             </div>
