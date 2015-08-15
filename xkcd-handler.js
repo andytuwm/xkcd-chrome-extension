@@ -213,11 +213,12 @@ window.onload = function () {
 
     function loadHistory() {
         if (historyNeedsUpdate) {
-            let oldChild = document.getElementById('histList');
-            let newChild = document.createElement("div");
+            var item;
+            var oldChild = document.getElementById('histList');
+            var newChild = document.createElement("div");
             newChild.id = "histList";
-            for (let i = 0; i < hist.length; i++) {
-                let item = document.createElement("li");
+            for (var i = 0; i < hist.length; i++) {
+                item = document.createElement("li");
                 item.classList.add("mdl-menu__item");
                 item.innerHTML = hist[i].disp;
                 item.setAttribute("data-indexcount", i);
