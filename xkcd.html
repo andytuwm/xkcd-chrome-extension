@@ -7,14 +7,6 @@
     <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
     <link rel="import" href="/bower_components/paper-toast/paper-toast.html">
-    <link rel="import" href="/bower_components/paper-dropdown/paper-dropdown.html">
-    <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
-    <link rel="import" href="/bower_components/paper-input/paper-input-decorator.html" async>
-    <link rel="import" href="/bower_components/core-icons/notification-icons.html" async>
-    <link rel="import" href="/bower_components/core-input/core-input.html" async>
-    <link rel="import" href="/bower_components/core-menu/core-menu.html" async>
-    <link rel="import" href="/bower_components/paper-menu-button/paper-menu-button.html" async>
-    <link rel="import" href="/bower_components/paper-item/paper-item.html" async>
 
     <link rel="stylesheet" href="/mdl/material.min.css">
     <script src="./mdl/material.min.js" async></script>
@@ -23,7 +15,7 @@
     <script src="xkcd-handler.js" async></script>
 </head>
 
-<body unresolved>
+<body>
 
     <div id="comicContainer">
         <h1 id="comicTitle"></h1>
@@ -32,23 +24,24 @@
             <img id="comic">
         </div>
         <div class="mdl-grid">
-            <div>
+            <div class="mdl-cell mdl-cell--2-col">
                 <img class="logo" src="/assets/xkcd_48.png">
-                <paper-icon-button id="explain" icon="info-outline" title="Explain"></paper-icon-button>
-                <paper-menu-button>
-                    <paper-icon-button id="history" icon="schedule" title="History"></paper-icon-button>
-                    <paper-dropdown class="dropdown" id="no-pad" valign="bottom" duration="200">
-                        <core-menu id="historyMenu">
-                            <template id="array" is="auto-binding" repeat="{{historyList}}">
-                                <paper-item class="smallmenu">
-                                    <div>{{disp}}</div>
-                                </paper-item>
-                            </template>
-                        </core-menu>
-                    </paper-dropdown>
-                </paper-menu-button>
+                <button id="explain" class="mdl-button mdl-js-button mdl-button--icon" title="Explain">
+                    <i class="material-icons">info_outline</i>
+                </button>
+
+                <button id="histnew" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">history</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" for="histnew" style="padding: 0;">
+                    <li class="mdl-menu__item">Some Action</li>
+                    <li class="mdl-menu__item">Another Action</li>
+                    <li class="mdl-menu__item">Yet Another Action</li>
+                </ul>
+
             </div>
-            <div class="navigation">
+            <div class="navigation mdl-cell mdl-cell--4-col">
                 <button id="first" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" title="First">
                     <img src="/assets/start.png">
                 </button>
@@ -65,16 +58,12 @@
                     <img src="/assets/end.png">
                 </button>
             </div>
-            <div>
+            <div class="mdl-cell mdl-cell--2-col">
                 <!-- Comic Search Input -->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="searchinput" />
                     <label class="mdl-textfield__label" for="searchinput">Search Comic Number...</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
                 </div>
-                <paper-input-decorator id="search" label="Search Comic Number">
-                    <input id="input" is="core-input">
-                </paper-input-decorator>
             </div>
         </div>
 
