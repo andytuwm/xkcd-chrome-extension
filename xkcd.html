@@ -4,9 +4,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/xkcd.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
-    <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-
-    <link rel="import" href="/bower_components/paper-toast/paper-toast.html">
 
     <link rel="stylesheet" href="/mdl/material.min.css">
     <script src="./mdl/material.min.js" async></script>
@@ -26,18 +23,16 @@
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--2-col">
                 <img class="logo" src="/assets/xkcd_48.png">
-                <button id="explain" class="mdl-button mdl-js-button mdl-button--icon" title="Explain">
+                <button id="explain" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" title="Explain">
                     <i class="material-icons">info_outline</i>
                 </button>
 
-                <button id="histnew" class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">history</i>
+                <button id="hist-button" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
+                    <i class="material-icons" style="font-size: 27px;">history</i>
                 </button>
 
-                <ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" for="histnew" style="padding: 0;">
-                    <li class="mdl-menu__item">Some Action</li>
-                    <li class="mdl-menu__item">Another Action</li>
-                    <li class="mdl-menu__item">Yet Another Action</li>
+                <ul id="historyMenu" class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" for="hist-button">
+                    <div id="histList"></div>
                 </ul>
 
             </div>
@@ -69,11 +64,13 @@
 
     </div>
 
+    <!--
     <paper-toast id="end" text="You have reached the end." duration=1500></paper-toast>
     <paper-toast id="badinput" text="You have entered an invalid search input." duration=1500></paper-toast>
     <paper-toast id="badnum" text="Could not find comic with inputted number." duration=1500></paper-toast>
     <paper-toast id="already" text="Already displaying searched comic." duration=1500></paper-toast>
     <paper-toast id="404" text="404 Network Error. Please try again." duration=1500></paper-toast>
+-->
 
 </body>
 

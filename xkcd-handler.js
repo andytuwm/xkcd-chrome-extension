@@ -1,6 +1,7 @@
 window.onload = function () {
 
     setTimeout(function () {
+        "use strict";
         // New XHR object to get data from xkcd
         var oReq = new XMLHttpRequest();
         // Variables to store comic numbers to keep track of which is displayed.
@@ -8,6 +9,7 @@ window.onload = function () {
         var latestComic = null;
         var comicSearch = null;
         var comicTitle = null;
+        var historyNeedsUpdate = true;
         var currentUrl = "http://xkcd.com/";
         var arraybind = document.getElementById('array');
         var hist = [];
@@ -16,9 +18,6 @@ window.onload = function () {
         // Set saved history array for data binding.
         chrome.storage.sync.get('browsed', function (array) {
             hist = array.browsed;
-            arraybind.historyList = hist;
-            //console.log(arraybind.historyList);
-            //console.log(hist);
         });
 
         // Initialize to most recent comic
@@ -38,6 +37,7 @@ window.onload = function () {
         var search = document.getElementById("searchinput");
         var help = document.getElementById("explain");
         var menuItemGetter = document.getElementById('historyMenu');
+        var historyButton = document.getElementById('hist-button');
         var img = document.getElementById('comic');
 
         first.onload = first.addEventListener("click", getFirst, false);
@@ -48,7 +48,8 @@ window.onload = function () {
         image.onload = image.addEventListener("click", openComic, false);
         search.onload = search.addEventListener("keyup", searchComic, false);
         help.onload = help.addEventListener("click", openHelp, false);
-        menuItemGetter.onload = menuItemGetter.addEventListener("core-activate", restoreComic, false);
+        historyButton.onload = historyButton.addEventListener("click", loadHistory, false)
+        menuItemGetter.onload = menuItemGetter.addEventListener("click", restoreComic, false);
         img.onerror = imgError;
 
 
@@ -75,7 +76,8 @@ window.onload = function () {
             latestComic = this.response.num;
             var listener = reqListener.bind(this);
             listener();
-            document.getElementById("end").dismiss();
+            //            document.getElementById("end").dismiss();
+            loadHistory();
         }
 
         // Send HTTP request and retrieve info of the comic from specified url
@@ -92,16 +94,16 @@ window.onload = function () {
         function getFirst() {
             if (displayedComic != 1)
                 setComic("http://xkcd.com/1/info.0.json");
-            else
-                document.getElementById("end").show();
+            else {}
+            //                document.getElementById("end").show();
         }
 
         // Get previous comic
         function getPrevious() {
             if (displayedComic - 1 >= 1)
                 setComic("http://xkcd.com/" + (displayedComic - 1) + "/info.0.json");
-            else
-                document.getElementById("end").show();
+            else {}
+            //                document.getElementById("end").show();
         }
 
         // Get random comic
@@ -114,16 +116,16 @@ window.onload = function () {
         function getNext() {
             if (displayedComic + 1 <= latestComic)
                 setComic("http://xkcd.com/" + (displayedComic + 1) + "/info.0.json");
-            else
-                document.getElementById("end").show();
+            else {}
+            //                document.getElementById("end").show();
         }
 
         // Get most recent comic
         function getLast() {
             if (displayedComic != latestComic)
                 setComic("http://xkcd.com/info.0.json");
-            else
-                document.getElementById("end").show();
+            else {}
+            //                document.getElementById("end").show();
         }
 
         // Opens a new tab to the page the comic is located at
@@ -139,13 +141,13 @@ window.onload = function () {
             if (window.event.keyCode === 13) {
                 comicSearch = document.getElementById("searchinput").value;
                 if (comicSearch.match(/[a-z]/i) || !comicSearch.match(/[0-9]+/)) {
-                    document.getElementById("badinput").show();
+                    //                    document.getElementById("badinput").show();
                 } else if (comicSearch == displayedComic) {
-                    document.getElementById("already").show();
+                    //                    document.getElementById("already").show();
                 } else if (comicSearch > 0 && comicSearch <= latestComic) {
                     setComic("http://xkcd.com/" + comicSearch + "/info.0.json");
                 } else {
-                    document.getElementById("badnum").show();
+                    //                    document.getElementById("badnum").show();
                 }
                 // Clear search text input field
                 document.getElementById("searchinput").value = "";
@@ -177,7 +179,7 @@ window.onload = function () {
                     history.shift();
                     history.push(stored);
                 }
-                arraybind.historyList = history;
+                hist = history;
                 //console.log(history);
 
             } else {
@@ -195,21 +197,33 @@ window.onload = function () {
                 'browsed': history
             }, function () {
                 //console.log("History saved.");
+                historyNeedsUpdate = true;
             });
         }
 
         function restoreComic() {
             // Grab index of menu item clicked
-            var comicIndex = menuItemGetter.selectedIndex;
-            //console.log(comicIndex);
+            var comicIndex = event.target.dataset.indexcount;
             // Grab stored comic number from history queue
             var comicNum = hist[comicIndex].com;
-            //console.log(comicNum);
             setComic("http://xkcd.com/" + comicNum + "/info.0.json");
-            //console.log(menuItemGetter.selected);
+        }
 
-            // Clear dropdown sticky selection
-            menuItemGetter.selected = null;
+        function loadHistory() {
+            if (historyNeedsUpdate) {
+                let oldChild = document.getElementById('histList');
+                let newChild = document.createElement("div");
+                newChild.id = "histList";
+                for (let i = 0; i < hist.length; i++) {
+                    let item = document.createElement("li");
+                    item.classList.add("mdl-menu__item");
+                    item.innerHTML = hist[i].disp;
+                    item.setAttribute("data-indexcount", i);
+                    newChild.appendChild(item);
+                }
+                document.getElementById("historyMenu").replaceChild(newChild, oldChild);
+                historyNeedsUpdate = false;
+            }
         }
 
         // Check if comic num is already in history.
@@ -233,7 +247,7 @@ window.onload = function () {
         }
 
         function imgError() {
-            document.getElementById("404").show();
+            //            document.getElementById("404").show();
         }
     }, 100);
 };

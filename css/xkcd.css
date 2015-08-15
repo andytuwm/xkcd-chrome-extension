@@ -45,18 +45,15 @@ body {
     font-size: 25px;
     font-weight: 400;
     margin-bottom: 0;
-    margin-top: 0;
-    position: relative;
-    bottom: 5px;
+    margin-top: 5px;
 }
 
 #comicNumber {
     font-size: 16px;
     font-weight: 300;
     margin-bottom: 0;
-    margin-top: 0px;
-    position: relative;
-    bottom: 5px;
+    margin-top: 0;
+    height: 40px;
 }
 
 #image {
@@ -79,7 +76,7 @@ body {
     position: relative;
 }
 
-.navigation button {
+button.mdl-button {
     height: 45px;
     width: 45px;
 }
@@ -102,6 +99,10 @@ body {
 #search {
     position: relative;
     top: -10px;
+}
+
+#historyMenu {
+    padding: 0;
 }
 
 
