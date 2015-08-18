@@ -10,7 +10,6 @@ window.onload = function () {
     var comicTitle = null;
     var historyNeedsUpdate = true;
     var currentUrl = "http://xkcd.com/";
-    var arraybind = document.getElementById('array');
     var hist = [];
 
     // Retrieve history from chrome.storage.sync on start.
@@ -47,7 +46,7 @@ window.onload = function () {
     image.onload = image.addEventListener("click", openComic, false);
     search.onload = search.addEventListener("keyup", searchComic, false);
     help.onload = help.addEventListener("click", openHelp, false);
-    historyButton.onload = historyButton.addEventListener("click", loadHistory, false)
+    historyButton.onload = historyButton.addEventListener("click", loadHistory, false);
     menuItemGetter.onload = menuItemGetter.addEventListener("click", restoreComic, false);
     img.onerror = imgError;
 
